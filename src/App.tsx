@@ -1,7 +1,8 @@
 import type { Component } from "solid-js";
+import List from "./components/List";
 
 const App: Component = () => {
-  return <div>Hello SolidJS</div>;
+  return <List />;
 };
 
 export default App;
