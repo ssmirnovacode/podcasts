@@ -9,7 +9,7 @@ export class PodcastService {
       // TODO look for types from API
       id: item.id.attributes["im:id"],
       title: item.title.label,
-      image: item["im:image"][0],
+      image: item["im:image"][0].label,
       author: item["im:artist"].label,
       description: item.summary.label,
     }));

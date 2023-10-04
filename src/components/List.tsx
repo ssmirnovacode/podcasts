@@ -2,6 +2,7 @@ import { Component, For, Show, createEffect, createSignal } from "solid-js";
 import "./List.css";
 import { Podcast } from "../types";
 import { PodcastService } from "../services/PodcastService";
+import PodcastCard from "./PodcastCard";
 
 const List: Component = (props) => {
   const [podcasts, setPodcasts] = createSignal<Podcast[]>([]);
@@ -32,7 +33,7 @@ const List: Component = (props) => {
           fallback={<p>No podcast found matching your search criteria</p>}
         >
           <For each={podcasts()}>
-            {(podcast: Podcast) => <div>{podcast.title}</div>}
+            {(podcast: Podcast) => <PodcastCard podcast={podcast} />}
           </For>
         </Show>
       </section>
