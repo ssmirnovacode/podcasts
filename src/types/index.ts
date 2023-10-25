@@ -16,3 +16,11 @@ export type PodcastData = {
   episodesCount: number;
   releaseDate: string;
 };
+
+export type Episode = {
+  description: string;
+  id: string;
+  title: string;
+  duration: string;
+  releaseDate: string;
+};

@@ -1,6 +1,8 @@
+import { Episode, PodcastData } from "../types";
 import {
+  EPISODES_LIST_QUERY,
   PROXY_URL,
-  URL_PODCAST_DETAILS,
+  URL_PODCAST_LOOKUP,
   URL_TOP_100,
 } from "../utils/constants";
 
@@ -21,21 +23,45 @@ export class PodcastService {
   }
 
   static async getPodcastById(id: string) {
-    const stringToEncode = `${URL_PODCAST_DETAILS}?id=${id}`;
+    const stringToEncode = `${URL_PODCAST_LOOKUP}?id=${id}&${EPISODES_LIST_QUERY}`;
     const fetchUrl = `${PROXY_URL}?${encodeURIComponent(stringToEncode)}`;
     const response = await fetch(fetchUrl).catch((err) => console.log(err));
     const { results = [] } = (await response?.json()) || {};
-    // TODO add typing
-    const arr = results?.map((item) => ({
-      title: item.collectionName,
-      author: item.artistName,
-      image: item.artworkUrl600,
-      country: item.country,
+
+    const podcast: PodcastData = {
+      title: results[0]?.collectionName,
+      author: results[0]?.artistName,
+      image: results[0]?.artworkUrl600,
+      country: results[0]?.country,
       id,
-      genre: item.primaryGenreName,
-      episodesCount: item.trackCount,
-      releaseDate: item.releaseDate,
-    }));
-    return arr[0];
+      genre: results[0]?.primaryGenreName,
+      episodesCount: results[0]?.trackCount,
+      releaseDate: results[0]?.releaseDate,
+    };
+    const episodes: Episode[] =
+      results
+        ?.slice(1)
+        ?.map(
+          ({
+            description,
+            releaseDate,
+            trackId,
+            trackName,
+            trackTimeMillis,
+          }: {
+            description: string;
+            releaseDate: string;
+            trackId: string;
+            trackName: string;
+            trackTimeMillis: string;
+          }) => ({
+            title: trackName,
+            description,
+            duration: trackTimeMillis,
+            id: trackId,
+            releaseDate: releaseDate,
+          })
+        ) || [];
+    return { podcast, episodes };
   }
 }

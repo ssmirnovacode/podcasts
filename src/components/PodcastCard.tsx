@@ -8,7 +8,7 @@ type CardProps = {
 };
 
 // TODO -find out why JSX
-const PodcastCard: Component = (props: CardProps) => {
+const PodcastCard = (props: CardProps) => {
   return (
     <article class="podcast-list__item">
       <div class="podcast-list__item image">

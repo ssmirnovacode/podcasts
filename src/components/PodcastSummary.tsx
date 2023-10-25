@@ -6,7 +6,7 @@ type PodcastSummaryProps = {
   podcast: PodcastData;
 };
 
-const PodcastSummary: Component = (props) => {
+const PodcastSummary = (props: PodcastSummaryProps) => {
   return (
     <section class="podcast-info__summary">
       <img src={props.podcast.image} alt={props.podcast.title} />
