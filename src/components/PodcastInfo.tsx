@@ -11,14 +11,16 @@ const PodcastInfo: Component = (props) => {
   const [data] = createResource(params.id, PodcastService.getPodcastById);
 
   return (
-    <Show when={!data.loading} fallback={<>Loading the podcast info...</>}>
-      <div class="wrapper">
-        <Show when={data()?.podcast} fallback={<p>{params.id} loading</p>}>
+    <div class="wrapper">
+      {data.error ? ( // TODO create error component
+        <div>Server error!!!</div>
+      ) : (
+        <Show when={!data.loading} fallback={<>Loading the podcast info...</>}>
           <PodcastSummary podcast={data()?.podcast} />
           <PodcastEpisodes episodes={data()?.episodes || []} />
         </Show>
-      </div>
-    </Show>
+      )}
+    </div>
   );
 };
 

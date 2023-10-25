@@ -25,7 +25,7 @@ export class PodcastService {
   static async getPodcastById(id: string) {
     const stringToEncode = `${URL_PODCAST_LOOKUP}?id=${id}&${EPISODES_LIST_QUERY}`;
     const fetchUrl = `${PROXY_URL}?${encodeURIComponent(stringToEncode)}`;
-    const response = await fetch(fetchUrl).catch((err) => console.log(err));
+    const response = await fetch(fetchUrl).catch((err) => console.error(err));
     const { results = [] } = (await response?.json()) || {};
 
     const podcast: PodcastData = {

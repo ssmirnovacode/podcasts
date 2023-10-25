@@ -18,21 +18,25 @@ const List: Component = (props) => {
           //   onChange={(e) => setTerm(e.target.value)}
         />
       </div>
-      <Show
-        when={!podcasts.loading}
-        fallback={<>Loading the podcasts list...</>}
-      >
-        <section class="podcast-list">
-          <Show
-            when={podcasts().length}
-            fallback={<p>No podcast found matching your search criteria</p>}
-          >
-            <For each={podcasts()}>
-              {(podcast: Podcast) => <PodcastCard podcast={podcast} />}
-            </For>
-          </Show>
-        </section>
-      </Show>
+      {podcasts.error ? (
+        <div>Server error!</div>
+      ) : (
+        <Show
+          when={!podcasts.loading}
+          fallback={<>Loading the podcasts list...</>}
+        >
+          <section class="podcast-list">
+            <Show
+              when={podcasts().length}
+              fallback={<p>No podcast found matching your search criteria</p>}
+            >
+              <For each={podcasts()}>
+                {(podcast: Podcast) => <PodcastCard podcast={podcast} />}
+              </For>
+            </Show>
+          </section>
+        </Show>
+      )}
     </div>
   );
 };
