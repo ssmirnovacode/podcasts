@@ -5,6 +5,7 @@ import { PodcastService } from "../services/PodcastService";
 import PodcastCard from "./PodcastCard";
 
 const List: Component = (props) => {
+  // add API call with search endpoint and term param
   const [podcasts] = createResource(PodcastService.getPodcasts);
 
   return (

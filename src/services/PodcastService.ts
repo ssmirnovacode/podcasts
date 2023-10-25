@@ -38,7 +38,11 @@ export class PodcastService {
       id,
       genre: results[0]?.primaryGenreName,
       episodesCount: results[0]?.trackCount,
-      releaseDate: results[0]?.releaseDate,
+      releaseDate: results[0]?.releaseDate
+        ?.slice(0, 10)
+        .split("-")
+        .reverse()
+        .join("/"),
     };
     const episodes: Episode[] =
       results
@@ -63,7 +67,11 @@ export class PodcastService {
             description,
             duration: convertMsToTime(trackTimeMillis),
             id: trackId,
-            releaseDate: releaseDate,
+            releaseDate: releaseDate
+              ?.slice(0, 10)
+              .split("-")
+              .reverse()
+              .join("/"),
             audio: episodeUrl,
           })
         ) || [];
