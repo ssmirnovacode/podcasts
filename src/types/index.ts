@@ -18,6 +18,7 @@ export type PodcastData = {
 };
 
 export type Episode = {
+  audio: string;
   description: string;
   id: number;
   title: string;

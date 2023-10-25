@@ -20,6 +20,7 @@ export class PodcastService {
       author: item["im:artist"].label,
       description: item.summary.label,
     }));
+
     return podcasts;
   }
 
@@ -45,12 +46,14 @@ export class PodcastService {
         ?.map(
           ({
             description,
+            episodeUrl,
             releaseDate,
             trackId,
             trackName,
             trackTimeMillis,
           }: {
             description: string;
+            episodeUrl: string;
             releaseDate: string;
             trackId: number;
             trackName: string;
@@ -61,6 +64,7 @@ export class PodcastService {
             duration: convertMsToTime(trackTimeMillis),
             id: trackId,
             releaseDate: releaseDate,
+            audio: episodeUrl,
           })
         ) || [];
     console.log(episodes);

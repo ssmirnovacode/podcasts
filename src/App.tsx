@@ -15,7 +15,10 @@ const App: Component = () => {
         </div>
         <Routes>
           <Route path="/" component={List} />
-          <Route path="/podcast/:id" component={PodcastInfo} />
+          <Route path="/podcast/:id">
+            <Route path="/" component={PodcastInfo} />
+            {/* <Route path={"/episode/:episodeId"} element={<EpisodeInfo />} /> */}
+          </Route>
         </Routes>
       </div>
     </Router>

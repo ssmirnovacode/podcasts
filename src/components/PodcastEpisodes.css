@@ -45,3 +45,8 @@
 .table-item__duration {
     text-align-last: right;
 }
+
+.audio {
+    width: 100%;
+    margin-bottom: 1rem;
+}
