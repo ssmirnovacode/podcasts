@@ -1,5 +1,10 @@
 import { Component } from "solid-js";
 import "./PodcastSummary.css";
+import { PodcastData } from "../types";
+
+type PodcastSummaryProps = {
+  podcast: PodcastData;
+};
 
 const PodcastSummary: Component = (props) => {
   return (

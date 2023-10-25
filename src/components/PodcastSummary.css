@@ -1,4 +1,4 @@
-.podcast-info .podcast-info__summary {
+.podcast-info__summary {
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -10,35 +10,35 @@
     box-shadow: var(--box-shadow);
 }
 
-.podcast-info .podcast-info__summary img {
+.podcast-info__summary img {
     width: 70%;
 }
 
-.podcast-info .podcast-info__summary a {
+.podcast-info__summary a {
     text-align: center;
     text-decoration: none;
     color: black;
 }
 
-.podcast-info .podcast-info__summary h3 {
+.podcast-info__summary h3 {
     text-align: left;
     margin-bottom: 0;
     font-size: 1rem;
 }
 
-.podcast-info .podcast-info__summary div {
+.podcast-info__summary div {
     font-style: italic;
     font-size: .8rem;
 }
 
 
-.podcast-info .podcast-info__summary p {
+.podcast-info__summary p {
     
     font-style: italic;
     font-size: .7rem;
 }
 
-.podcast-info .podcast-info__summary p:first-child {
+.podcast-info__summary p:first-child {
     font-weight: bold;
     font-style: normal;
 }

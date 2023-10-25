@@ -6,7 +6,7 @@ export type Podcast = {
   description: string;
 };
 
-export type PodcastDetails = {
+export type PodcastData = {
   title: string;
   author: string;
   image: string;

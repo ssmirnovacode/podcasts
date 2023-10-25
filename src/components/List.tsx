@@ -1,19 +1,11 @@
-import { Component, For, Show, createEffect, createSignal } from "solid-js";
+import { Component, For, Show, createResource } from "solid-js";
 import "./List.css";
 import { Podcast } from "../types";
 import { PodcastService } from "../services/PodcastService";
 import PodcastCard from "./PodcastCard";
 
 const List: Component = (props) => {
-  const [podcasts, setPodcasts] = createSignal<Podcast[]>([]);
-
-  createEffect(() => {
-    (async () => {
-      const items = await PodcastService.getPodcasts();
-      setPodcasts(items);
-      console.log("createEffect ran");
-    })();
-  });
+  const [podcasts] = createResource(PodcastService.getPodcasts);
 
   return (
     <div>
@@ -26,17 +18,21 @@ const List: Component = (props) => {
           //   onChange={(e) => setTerm(e.target.value)}
         />
       </div>
-
-      <section class="podcast-list">
-        <Show
-          when={podcasts().length}
-          fallback={<p>No podcast found matching your search criteria</p>}
-        >
-          <For each={podcasts()}>
-            {(podcast: Podcast) => <PodcastCard podcast={podcast} />}
-          </For>
-        </Show>
-      </section>
+      <Show
+        when={!podcasts.loading}
+        fallback={<>Loading the podcasts list...</>}
+      >
+        <section class="podcast-list">
+          <Show
+            when={podcasts().length}
+            fallback={<p>No podcast found matching your search criteria</p>}
+          >
+            <For each={podcasts()}>
+              {(podcast: Podcast) => <PodcastCard podcast={podcast} />}
+            </For>
+          </Show>
+        </section>
+      </Show>
     </div>
   );
 };
