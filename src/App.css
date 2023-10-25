@@ -1,0 +1,15 @@
+.app {
+    margin: 3rem 4rem;
+}
+
+.header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: bold;
+}

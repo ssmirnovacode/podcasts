@@ -19,8 +19,8 @@ export type PodcastData = {
 
 export type Episode = {
   description: string;
-  id: string;
+  id: number;
   title: string;
-  duration: string;
+  duration: number;
   releaseDate: string;
 };

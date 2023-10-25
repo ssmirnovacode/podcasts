@@ -10,11 +10,11 @@ type PodcastEpisodesProps = {
 const PodcastEpisodes = (props: PodcastEpisodesProps) => {
   return (
     <div class="podcast-details">
-      {/* <section class="podcast-count">
+      <section class="podcast-count">
         <div>
-          Episodes: <span>{details?.count}</span>
+          Episodes: <span>{props.episodes.length}</span>
         </div>
-      </section> */}
+      </section>
       <section class="podcast-episodes">
         <For each={props.episodes}>
           {(episode: Episode) => (
@@ -23,24 +23,9 @@ const PodcastEpisodes = (props: PodcastEpisodesProps) => {
                 <a href={`episode/${episode.id}`}>{episode.title}</a>
               </div>
               <div class="table-item__date">{episode.releaseDate}</div>
-              <div class="table-item__duration">
-                {convertMsToTime(episode.duration)}
-              </div>
+              <div class="table-item__duration">{episode.duration}</div>
             </div>
           )}
-          {/* {props.episodes?.map((item) => {
-          return (
-            <div key={item.id} class="table-item">
-              <div class="table-item__title">
-                <Link to={`episode/${item.id}`}>{item.title}</Link>
-              </div>
-              <div class="table-item__date">{item.date}</div>
-              <div class="table-item__duration">
-                {convertMsToTime(item.duration)}
-              </div>
-            </div>
-          );
-        })} */}
         </For>
       </section>
     </div>

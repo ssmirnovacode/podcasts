@@ -5,6 +5,7 @@ import {
   URL_PODCAST_LOOKUP,
   URL_TOP_100,
 } from "../utils/constants";
+import { convertMsToTime } from "../utils/convertMilis";
 
 export class PodcastService {
   static async getPodcasts() {
@@ -51,17 +52,18 @@ export class PodcastService {
           }: {
             description: string;
             releaseDate: string;
-            trackId: string;
+            trackId: number;
             trackName: string;
-            trackTimeMillis: string;
+            trackTimeMillis: number;
           }) => ({
             title: trackName,
             description,
-            duration: trackTimeMillis,
+            duration: convertMsToTime(trackTimeMillis),
             id: trackId,
             releaseDate: releaseDate,
           })
         ) || [];
+    console.log(episodes);
     return { podcast, episodes };
   }
 }
