@@ -29,7 +29,13 @@ const PodcastEpisodes = (props: PodcastEpisodesProps) => {
                 <div class="table-item__date">{episode.releaseDate}</div>
                 <div class="table-item__duration">{episode.duration}</div>
               </div>
-              <audio class="audio" controls src={episode.audio} />
+              <audio
+                class="audio"
+                controls
+                src={episode.audio}
+                // onLoadStart={() => console.log("onloadstart")}
+                // oncanplay={() => console.log("ready")}
+              />
             </>
           )}
         </For>

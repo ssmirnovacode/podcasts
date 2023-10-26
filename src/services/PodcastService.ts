@@ -1,4 +1,4 @@
-import { Episode, PodcastData } from "../types";
+import { Episode, Podcast, PodcastData } from "../types";
 import {
   EPISODES_LIST_QUERY,
   PROXY_URL,
@@ -12,14 +12,16 @@ export class PodcastService {
     const response = await fetch(URL_TOP_100).catch((err) => console.log(err));
     const data = (await response?.json()) || {};
     const { feed: { entry = [] } = {} } = data;
-    const podcasts = entry.map((item) => ({
+    const podcasts: Podcast[] = entry.map((item) => ({
       // TODO look for types from API
-      id: item.id.attributes["im:id"],
-      title: item.title.label,
-      image: item["im:image"][0].label,
-      author: item["im:artist"].label,
-      description: item.summary.label,
+      id: item?.id?.attributes?.["im:id"],
+      title: item?.title?.label,
+      image: item?.["im:image"]?.[0]?.label,
+      author: item?.["im:artist"]?.label,
+      description: item?.summary?.label,
     }));
+
+    // TODO add type assertion and throw error or warning
 
     return podcasts;
   }
@@ -65,7 +67,7 @@ export class PodcastService {
           }) => ({
             title: trackName,
             description,
-            duration: convertMsToTime(trackTimeMillis),
+            duration: trackTimeMillis ? convertMsToTime(trackTimeMillis) : "",
             id: trackId,
             releaseDate: releaseDate
               ?.slice(0, 10)
@@ -75,7 +77,7 @@ export class PodcastService {
             audio: episodeUrl,
           })
         ) || [];
-    console.log(episodes);
+
     return { podcast, episodes };
   }
 }

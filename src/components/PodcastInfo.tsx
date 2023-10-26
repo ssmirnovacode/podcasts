@@ -1,4 +1,4 @@
-import { Component, Show, createResource } from "solid-js";
+import { Component, Show, createEffect, createResource } from "solid-js";
 import "./PodcastInfo.css";
 import { useParams } from "@solidjs/router";
 import { PodcastService } from "../services/PodcastService";
