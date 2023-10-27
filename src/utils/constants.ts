@@ -4,3 +4,4 @@ export const URL_TOP_100 =
 export const URL_PODCAST_LOOKUP = "https://itunes.apple.com/lookup"; // ?id={podcastId}
 export const EPISODES_LIST_QUERY =
   "country=US&media=podcast&entity=podcastEpisode";
+export const URL_SEARCH = "https://itunes.apple.com/search";

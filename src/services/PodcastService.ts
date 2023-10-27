@@ -3,6 +3,7 @@ import {
   EPISODES_LIST_QUERY,
   PROXY_URL,
   URL_PODCAST_LOOKUP,
+  URL_SEARCH,
   URL_TOP_100,
 } from "../utils/constants";
 import { convertMsToTime } from "../utils/convertMilis";
@@ -79,5 +80,13 @@ export class PodcastService {
         ) || [];
 
     return { podcast, episodes };
+  }
+
+  static async searchPodcasts(term: string) {
+    const response = await fetch(`${URL_SEARCH}/term=${term}`).catch((err) =>
+      console.log(err)
+    );
+    const data = (await response?.json()) || {};
+    console.log(data);
   }
 }
