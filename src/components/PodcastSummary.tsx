@@ -21,7 +21,10 @@ const PodcastSummary = (props: PodcastSummaryProps) => {
         </div>
         <div>
           <p>Description:</p>
-          <p>{state.selectedItem?.description || ""}</p>
+          <p class="podcast-info__description">
+            {state.selectedItem?.description || ""}
+          </p>
+          {/* <div class="pseudo-padding"></div> */}
         </div>
       </section>
     </Show>

@@ -15,3 +15,9 @@
     gap: 1rem;
     justify-content: end;
 }
+
+@media screen and (max-width: 400px) {
+    .search-wrapper {
+        justify-content: center;
+    }
+}

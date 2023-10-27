@@ -34,3 +34,9 @@
 .podcast-list__item p {
     font-size: .6rem;
 }
+
+@media screen and (max-width: 450px) {
+    .podcast-list__item {
+        width: 30vw;
+    }
+}
