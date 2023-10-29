@@ -41,6 +41,7 @@ const List: Component = (props) => {
     const searchTerm = debouncedTerm();
     const filtered = filterPodcasts(items, searchTerm);
     setFilteredItems(filtered);
+    console.log(JSON.stringify(items[1]));
   });
 
   return (
